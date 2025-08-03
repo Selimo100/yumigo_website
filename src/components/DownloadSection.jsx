@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DownloadSection.css';
 import cravingScreenshot from '../assets/Result_Screenshot.jpg';
+import ComingSoonModal from './ComingSoonModal';
 
 const DownloadSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDownloadClick = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
   return (
     <section className="download-section" id="download">
       <div className="container">
@@ -12,14 +20,14 @@ const DownloadSection = () => {
               Ready to Start Your Culinary Adventure?
             </h2>
             <p className="download-description">
-              Join thousands of food lovers who have discovered their perfect recipes through Yumigo. 
-              Download now and never wonder "what should I cook?" again.
+              Join thousands of food lovers who will discover their perfect recipes through Yumigo. 
+              Our app is coming soon to iOS and Android - be the first to experience recipe discovery based on your cravings!
             </p>
             
             <div className="download-features">
               <div className="feature-item">
                 <span className="feature-icon">📱</span>
-                <span>Available on iOS and Android</span>
+                <span>Coming soon to iOS and Android</span>
               </div>
               <div className="feature-item">
                 <span className="feature-icon">🆓</span>
@@ -32,15 +40,15 @@ const DownloadSection = () => {
             </div>
             
             <div className="download-buttons">
-              <a href="#" className="download-btn app-store">
+              <a href="#" className="download-btn app-store" onClick={handleDownloadClick}>
                 <div className="btn-content">
-                  <span className="btn-subtitle">Download on the</span>
+                  <span className="btn-subtitle">Coming soon to</span>
                   <span className="btn-title">App Store</span>
                 </div>
               </a>
-              <a href="#" className="download-btn google-play">
+              <a href="#" className="download-btn google-play" onClick={handleDownloadClick}>
                 <div className="btn-content">
-                  <span className="btn-subtitle">Get it on</span>
+                  <span className="btn-subtitle">Coming soon to</span>
                   <span className="btn-title">Google Play</span>
                 </div>
               </a>
@@ -56,6 +64,11 @@ const DownloadSection = () => {
           </div>
         </div>
       </div>
+      
+      <ComingSoonModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 };
