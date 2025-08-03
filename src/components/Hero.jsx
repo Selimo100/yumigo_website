@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Hero.css';
 import homeScreenshot from '../assets/Home_Screenshot.jpg';
 import cravingScreenshot from '../assets/Craving_Screenshot.jpg';
 import profileScreenshot from '../assets/Profile_Screenshot.jpg';
+import ComingSoonModal from './ComingSoonModal';
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDownloadClick = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
   return (
     <section className="hero">
       <div className="container">
@@ -18,8 +26,8 @@ const Hero = () => {
               Tell Yumigo what you're craving - salty, sweet, spicy, or sour - and get personalized recipe recommendations from our community of food lovers around the world.
             </p>
             <div className="hero-buttons">
-              <a href="#download" className="btn btn-primary">
-                Download Now
+              <a href="#download" className="btn btn-primary" onClick={handleDownloadClick}>
+                Coming Soon
               </a>
               <a href="#about" className="btn btn-secondary">
                 Learn More
@@ -39,6 +47,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      
+      <ComingSoonModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 };

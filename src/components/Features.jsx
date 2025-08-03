@@ -57,20 +57,20 @@ const Features = () => {
 
         <div className="features-stats">
           <div className="stat">
-            <div className="stat-number">10K+</div>
+            <div className="stat-number">Coming Soon</div>
             <div className="stat-label">Recipes</div>
           </div>
           <div className="stat">
-            <div className="stat-number">5K+</div>
+            <div className="stat-number">Launch 2025</div>
             <div className="stat-label">Active Users</div>
           </div>
           <div className="stat">
-            <div className="stat-number">15K+</div>
+            <div className="stat-number">Beta Testing</div>
             <div className="stat-label">Recipe Ratings</div>
           </div>
           <div className="stat">
-            <div className="stat-number">50+</div>
-            <div className="stat-label">Countries</div>
+            <div className="stat-number">Worldwide</div>
+            <div className="stat-label">Availability</div>
           </div>
         </div>
       </div>
