@@ -1,7 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import './Features.css';
 
 const Features = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const features = [
     {
       icon: '🔍',
@@ -35,44 +38,122 @@ const Features = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 80, opacity: 0, scale: 0.8 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
   return (
-    <section className="features-section" id="about">
+    <section className="features-section" id="about" ref={ref}>
       <div className="container">
-        <div className="section-header">
+        <motion.div 
+          className="section-header"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="section-title">Why Food Lovers Choose Yumigo</h2>
           <p className="section-description">
             Discover what makes Yumigo the perfect companion for your culinary journey
           </p>
-        </div>
+        </motion.div>
         
-        <div className="features-grid">
+        <motion.div 
+          className="features-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+        >
           {features.map((feature, index) => (
-            <div key={index} className="feature-card">
-              <div className="feature-icon">{feature.icon}</div>
+            <motion.div 
+              key={index} 
+              className="feature-card"
+              variants={itemVariants}
+              whileHover={{ 
+                scale: 1.05,
+                y: -10,
+                boxShadow: "0 20px 40px rgba(45, 138, 114, 0.2)"
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div 
+                className="feature-icon"
+                whileHover={{ 
+                  scale: 1.3,
+                  rotate: [0, -10, 10, 0]
+                }}
+                transition={{ duration: 0.5 }}
+              >
+                {feature.icon}
+              </motion.div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
-            </div>
+              
+              {/* Decorative elements */}
+              <div className="feature-decoration">
+                <div className="decoration-dot"></div>
+                <div className="decoration-dot"></div>
+                <div className="decoration-dot"></div>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="features-stats">
-          <div className="stat">
+        <motion.div 
+          className="features-stats"
+          initial={{ opacity: 0, y: 50 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <motion.div 
+            className="stat"
+            whileHover={{ scale: 1.05 }}
+          >
             <div className="stat-number">Coming Soon</div>
             <div className="stat-label">Recipes</div>
-          </div>
-          <div className="stat">
-            <div className="stat-number">Launch 2025</div>
+          </motion.div>
+          <motion.div 
+            className="stat"
+            whileHover={{ scale: 1.05 }}
+          >
+            <div className="stat-number">Launch Soon</div>
             <div className="stat-label">Active Users</div>
-          </div>
-          <div className="stat">
+          </motion.div>
+          <motion.div 
+            className="stat"
+            whileHover={{ scale: 1.05 }}
+          >
             <div className="stat-number">Beta Testing</div>
             <div className="stat-label">Recipe Ratings</div>
-          </div>
-          <div className="stat">
+          </motion.div>
+          <motion.div 
+            className="stat"
+            whileHover={{ scale: 1.05 }}
+          >
             <div className="stat-number">Worldwide</div>
             <div className="stat-label">Availability</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

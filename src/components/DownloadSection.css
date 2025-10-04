@@ -1,9 +1,12 @@
 .download-section {
-  padding: 100px 0;
-  background: linear-gradient(135deg, #2d8a72 0%, #4a9d84 100%);
+  padding: 120px 0;
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 20%, #047857 40%, #059669 60%, #10b981 80%, #34d399 100%);
   color: white;
   position: relative;
   overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
 }
 
 .download-section::before {
@@ -13,8 +16,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  background: 
+    radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(102, 179, 153, 0.2) 0%, transparent 60%);
   pointer-events: none;
+  animation: backgroundFloat 15s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg); }
 }
 
 .download-content {
@@ -27,11 +38,16 @@
 }
 
 .download-title {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 24px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 50%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
 }
 
 .download-description {
@@ -110,16 +126,21 @@
 }
 
 .preview-phone {
-  width: 280px;
-  height: 560px;
-  background: #1a1a1a;
-  border-radius: 30px;
-  padding: 20px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  width: 300px;
+  height: 600px;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 35px;
+  padding: 25px;
+  box-shadow: 
+    0 40px 80px rgba(0, 0, 0, 0.5),
+    0 0 0 2px rgba(255, 255, 255, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .preview-phone::before {
@@ -227,6 +248,82 @@
   color: #636e72;
 }
 
+/* Phone Glow Effect */
+.phone-glow {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #2d8a72, #4a9d84, #66b399, #2d8a72);
+  background-size: 300% 300%;
+  border-radius: 40px;
+  z-index: -1;
+  animation: glowAnimation 4s ease-in-out infinite;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+@keyframes glowAnimation {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Floating Yara */
+.floating-yara {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  z-index: 10;
+}
+
+/* Preview Decorations */
+.preview-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.decoration-element {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.decoration-element:nth-child(1) { top: 10%; left: 10%; }
+.decoration-element:nth-child(2) { top: 20%; right: 15%; }
+.decoration-element:nth-child(3) { bottom: 30%; left: 5%; }
+.decoration-element:nth-child(4) { bottom: 20%; right: 10%; }
+.decoration-element:nth-child(5) { top: 50%; left: -10%; }
+
+/* Enhanced Feature Items */
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 12px 0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  padding-left: 15px;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
 @media (max-width: 768px) {
   .download-section {
     padding: 80px 0;
@@ -239,7 +336,7 @@
   }
   
   .download-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   
   .download-buttons {
@@ -247,8 +344,17 @@
   }
   
   .preview-phone {
-    width: 240px;
-    height: 480px;
-    padding: 16px;
+    width: 250px;
+    height: 500px;
+    padding: 18px;
+  }
+  
+  .floating-yara {
+    display: none;
+  }
+  
+  .decoration-element {
+    width: 8px;
+    height: 8px;
   }
 }
