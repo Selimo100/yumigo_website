@@ -31,7 +31,8 @@ const Hero = () => {
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      paddingTop: '80px'
     }}>
       {/* Enhanced Green Animated Background */}
       <div style={{
@@ -83,39 +84,18 @@ const Hero = () => {
           zIndex: 10
         }}
       >
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(16, 185, 129, 0.3)',
-            background: 'linear-gradient(45deg, #10b981, #059669)'
-          }}
-        >
-          <img 
-            src={yaraImage} 
-            alt="Yara Mascot" 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
-          />
-        </motion.div>
+        
       </motion.div>
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem', width: '100%', zIndex: 2, position: 'relative' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+      <div style={{ 
+        maxWidth: '1400px', 
+        margin: '0 auto', 
+        padding: '0 1rem', 
+        width: '100%', 
+        zIndex: 2, 
+        position: 'relative'
+      }}>
+        <div className="hero-grid">
           
           {/* Left Content */}
           <motion.div
@@ -124,16 +104,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.h1
-              style={{
-                fontSize: '4rem',
-                fontWeight: '900',
-                lineHeight: '1.1',
-                marginBottom: '2rem',
-                background: 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 30%, #dcfce7 60%, #bbf7d0 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}
+              className="hero-title"
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -162,14 +133,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p
-              style={{
-                fontSize: '1.25rem',
-                lineHeight: '1.7',
-                marginBottom: '3rem',
-                color: '#f0fdf4',
-                opacity: 0.95,
-                textShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
-              }}
+              className="hero-description"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -178,25 +142,14 @@ const Hero = () => {
             </motion.p>
 
             <motion.div
-              style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}
+              className="hero-buttons"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <motion.button
                 onClick={handleDownloadClick}
-                style={{
-                  padding: '1rem 2rem',
-                  borderRadius: '9999px',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  color: 'white',
-                  fontWeight: '700',
-                  fontSize: '1.1rem',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 10px 25px rgba(16, 185, 129, 0.3)',
-                  transition: 'all 0.3s ease'
-                }}
+                className="btn btn-primary"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: '0 15px 35px rgba(16, 185, 129, 0.4)'
@@ -208,18 +161,7 @@ const Hero = () => {
 
               <motion.button
                 onClick={handleVideoClick}
-                style={{
-                  padding: '1rem 2rem',
-                  borderRadius: '9999px',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  color: 'white',
-                  fontWeight: '600',
-                  fontSize: '1.1rem',
-                  border: '2px solid rgba(255, 255, 255, 0.3)',
-                  cursor: 'pointer',
-                  backdropFilter: 'blur(10px)',
-                  transition: 'all 0.3s ease'
-                }}
+                className="btn btn-secondary"
                 whileHover={{ 
                   scale: 1.05,
                   background: 'rgba(255, 255, 255, 0.2)',
@@ -322,16 +264,7 @@ const Hero = () => {
           onClick={() => setShowVideoModal(false)}
         >
           <motion.div
-            style={{
-              maxWidth: '400px',
-              maxHeight: '70vh',
-              width: '85%',
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.2)',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}
+            className="video-modal"
             initial={{ scale: 0.8, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.8, opacity: 0, y: 20 }}
